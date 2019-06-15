@@ -10,8 +10,8 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'dist/enjoyhint.js': 'src/enjoyhint.js',
-          'dist/jquery.enjoyhint.js': 'src/jquery.enjoyhint.js',
+          'dist/js/enjoyhint.js': 'src/enjoyhint.js',
+          'dist/js/jquery.enjoyhint.js': 'src/jquery.enjoyhint.js',
         },
       },
     },
@@ -22,12 +22,12 @@ module.exports = function (grunt) {
       },
       dist: {
         src: [
-          'dist/enjoyhint.js',
-          'dist/jquery.enjoyhint.js',
+          'dist/js/enjoyhint.js',
+          'dist/js/jquery.enjoyhint.js',
           'node_modules/kinetic/kinetic.js',
           'node_modules/jquery.scrollto/jquery.scrollTo.js',
         ],
-        dest: 'dist/<%= pkg.name %>.bundle.js',
+        dest: 'dist/js/<%= pkg.name %>.bundle.js',
       },
     },
 
@@ -36,14 +36,14 @@ module.exports = function (grunt) {
         expand: true,
         cwd: 'src',
         src: 'jquery.enjoyhint.css',
-        dest: 'dist/',
+        dest: 'dist/css/',
       },
     },
 
     cssmin: {
       combine: {
         files: {
-          'dist/<%= pkg.name %>.min.css': ['dist/jquery.enjoyhint.css'],
+          'dist/css/<%= pkg.name %>.min.css': ['dist/css/jquery.enjoyhint.css'],
         },
       },
     },
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
       },
       main: {
         files: {
-          'dist/ideaspark-enjoyhint.bundle.min.js': ['dist/ideaspark-enjoyhint.bundle.js'],
+          'dist/js/ideaspark-enjoyhint.bundle.min.js': ['dist/js/ideaspark-enjoyhint.bundle.js'],
         },
       },
     },
