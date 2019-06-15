@@ -22,9 +22,10 @@ module.exports = function (grunt) {
       },
       dist: {
         src: [
-          'dist/*.js',
-          'node_modules/kinetic/kinetic.min.js',
-          'node_modules/jquery.scrollto/jquery.scrollTo.min.js',
+          'dist/enjoyhint.js',
+          'dist/jquery.enjoyhint.js',
+          'node_modules/kinetic/kinetic.js',
+          'node_modules/jquery.scrollto/jquery.scrollTo.js',
         ],
         dest: 'dist/<%= pkg.name %>.bundle.js',
       },
@@ -52,9 +53,14 @@ module.exports = function (grunt) {
     },
 
     uglify: {
+      options: {
+        sourceMap: true,
+        compress: true,
+        mangle: true,
+      },
       main: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>'],
+          'dist/ideaspark-enjoyhint.bundle.min.js': ['dist/ideaspark-enjoyhint.bundle.js'],
         },
       },
     },
