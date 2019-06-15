@@ -59,7 +59,7 @@ module.exports = function (grunt) {
     },
 
     eslint: {
-      src: ['*.js', 'src/*.js'],
+      src: ['*.js', 'src/**/*.js'],
     },
 
     uglify: {
