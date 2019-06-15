@@ -10,8 +10,8 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'dist/js/enjoyhint.js': 'src/enjoyhint.js',
-          'dist/js/jquery.enjoyhint.js': 'src/jquery.enjoyhint.js',
+          'dist/js/enjoyhint.js': 'src/js/enjoyhint.js',
+          'dist/js/jquery.enjoyhint.js': 'src/js/jquery.enjoyhint.js',
         },
       },
     },
@@ -33,10 +33,20 @@ module.exports = function (grunt) {
 
     copy: {
       main: {
-        expand: true,
-        cwd: 'src',
-        src: 'jquery.enjoyhint.css',
-        dest: 'dist/css/',
+        files: [
+          {
+            expand: true,
+            cwd: 'src',
+            src: 'font/**',
+            dest: 'dist/',
+          },
+          {
+            expand: true,
+            cwd: 'src',
+            src: 'css/jquery.enjoyhint.css',
+            dest: 'dist/',
+          },
+        ],
       },
     },
 
