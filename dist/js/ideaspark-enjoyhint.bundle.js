@@ -343,9 +343,13 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
       return this.each(function () {
         function svg(type, params) {
           var el = document.createElementNS('http://www.w3.org/2000/svg', type);
-          Object.keys(params).forEach(function (p) {
-            return el.setAttribute(p, params[p]);
-          });
+
+          if (params) {
+            Object.keys(params).forEach(function (p) {
+              return el.setAttribute(p, params[p]);
+            });
+          }
+
           return el;
         }
 

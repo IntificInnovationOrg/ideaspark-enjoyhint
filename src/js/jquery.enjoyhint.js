@@ -30,7 +30,9 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         function svg(type, params) {
           const el = document.createElementNS('http://www.w3.org/2000/svg', type);
 
-          Object.keys(params).forEach(p => el.setAttribute(p, params[p]));
+          if (params) {
+            Object.keys(params).forEach(p => el.setAttribute(p, params[p]));
+          }
 
           return el;
         }
