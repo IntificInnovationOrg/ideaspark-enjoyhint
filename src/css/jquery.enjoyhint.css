@@ -30,7 +30,6 @@
   width: 2000px;
   height: 1500px;
   z-index: 1011;
-  /*display: none;*/
   pointer-events: all;
 }
 
@@ -78,9 +77,7 @@
 
 .enjoyhint_skip_btn {
   position: absolute;
-  position: absolute;
   z-index: 1012;
-  /*display: none;*/
   pointer-events: all;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -129,7 +126,6 @@
   box-sizing: content-box;
   width: .3em;
   height: .3em;
-  border: none;
   -webkit-border-radius: 1em;
   border-radius: 1em;
   font: 400 8em/normal Arial, Helvetica, sans-serif;
@@ -293,7 +289,7 @@
   color: white;
   z-index: 107;
   font-size: 22px;
-  font-family: 'casino_handregular', 'Arial';
+  font-family: 'casino_handregular', 'Arial', sans-serif;
   -webkit-transition: opacity 400ms cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: opacity 400ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: opacity 400ms cubic-bezier(0.42, 0, 0.58, 1);
