@@ -23,6 +23,7 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
 (function ($) {
   let self;
 
+  // noinspection JSUnusedGlobalSymbols
   const methods = {
     init(settings) {
       return this.each(function () {
@@ -186,6 +187,7 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         const radius = 0;
         const shapeInitShift = 130;
 
+        // noinspection JSUnusedGlobalSymbols
         self.shape = new Kinetic.Shape({
           radius,
           center_x: -shapeInitShift,
