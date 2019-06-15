@@ -14,11 +14,15 @@
   "author": "Katherine Aurelia <katherine.aurelia@cubic.com>",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "eslint": "^5.16.0",
     "eslint-config-cubic-innovation": "git+https://github.com/wintryKat/eslint-config-cubic-innovation.git#v1.0.0",
     "eslint-plugin-import": "^2.17.3",
     "grunt": "^1.0.4",
+    "grunt-babel": "^8.0.0",
     "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^4.0.1",
     "gruntify-eslint": "^5.0.0"
