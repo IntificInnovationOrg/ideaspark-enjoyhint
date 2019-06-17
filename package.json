@@ -2,7 +2,7 @@
   "name": "ideaspark-enjoyhint",
   "version": "1.1.0",
   "description": "IdeaSpark component supplying interactive in-site tutorials, based on https://github.com/xbsoftware/enjoyhint",
-  "main": "dist/enjoyhint.js",
+  "main": "dist/js/enjoyhint.js",
   "scripts": {
     "build": "grunt",
     "test": "echo \"Error: no test specified\" && exit 1"
