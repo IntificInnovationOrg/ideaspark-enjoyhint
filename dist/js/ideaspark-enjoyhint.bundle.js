@@ -391,6 +391,10 @@ window.EnjoyHint = function (_options) {
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
   var effectiveRad = r;
 
@@ -519,21 +523,77 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         tapTargetWave.click(click);
         self.$skip_btn = $('<div>', {
           "class": self.cl.skip_btn
-        }).appendTo(self.enjoyhint).html('Skip').click(function () {
-          self.hide();
-          self.options.onSkipClick();
-        });
+        }).appendTo(self.enjoyhint).html('Skip').click(
+        /*#__PURE__*/
+        _asyncToGenerator(
+        /*#__PURE__*/
+        regeneratorRuntime.mark(function _callee() {
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  // eslint-disable-next-line no-console
+                  console.log('skip-click');
+                  _context.next = 3;
+                  return self.options.onSkipClick();
+
+                case 3:
+                  self.hide();
+
+                case 4:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        })));
         self.$next_btn = $('<div>', {
           "class": self.cl.next_btn
-        }).appendTo(self.enjoyhint).html('Next').click(function () {
-          self.options.onNextClick();
-        });
+        }).appendTo(self.enjoyhint).html('Next').click(
+        /*#__PURE__*/
+        _asyncToGenerator(
+        /*#__PURE__*/
+        regeneratorRuntime.mark(function _callee2() {
+          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  // eslint-disable-next-line no-console
+                  console.log('next-click');
+                  _context2.next = 3;
+                  return self.options.onNextClick();
+
+                case 3:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        })));
         self.$close_btn = $('<div>', {
           "class": self.cl.close_btn
-        }).appendTo(self.enjoyhint).html('').click(function () {
-          self.hide();
-          self.options.onSkipClick();
-        });
+        }).appendTo(self.enjoyhint).html('').click(
+        /*#__PURE__*/
+        _asyncToGenerator(
+        /*#__PURE__*/
+        regeneratorRuntime.mark(function _callee3() {
+          return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.next = 2;
+                  return self.options.onSkipClick();
+
+                case 2:
+                  self.hide();
+
+                case 3:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        })));
         self.$canvas.mousedown(function (event) {
           var canvas = $('canvas');
           canvas.css({

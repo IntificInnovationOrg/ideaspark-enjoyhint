@@ -152,22 +152,26 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
 
         self.$skip_btn = $('<div>', {
           class: self.cl.skip_btn,
-        }).appendTo(self.enjoyhint).html('Skip').click(() => {
+        }).appendTo(self.enjoyhint).html('Skip').click(async () => {
+          // eslint-disable-next-line no-console
+          console.log('skip-click');
+          await self.options.onSkipClick();
           self.hide();
-          self.options.onSkipClick();
         });
 
         self.$next_btn = $('<div>', {
           class: self.cl.next_btn,
-        }).appendTo(self.enjoyhint).html('Next').click(() => {
-          self.options.onNextClick();
+        }).appendTo(self.enjoyhint).html('Next').click(async () => {
+          // eslint-disable-next-line no-console
+          console.log('next-click');
+          await self.options.onNextClick();
         });
 
         self.$close_btn = $('<div>', {
           class: self.cl.close_btn,
-        }).appendTo(self.enjoyhint).html('').click(() => {
+        }).appendTo(self.enjoyhint).html('').click(async () => {
+          await self.options.onSkipClick();
           self.hide();
-          self.options.onSkipClick();
         });
 
         self.$canvas.mousedown((event) => {
