@@ -88,9 +88,11 @@ window.EnjoyHint = function (_options) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                // eslint-disable-next-line no-console
+                console.log('default');
                 return _context4.abrupt("return", Promise.resolve());
 
-              case 1:
+              case 2:
               case "end":
                 return _context4.stop();
             }
