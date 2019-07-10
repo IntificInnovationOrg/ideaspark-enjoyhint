@@ -848,6 +848,7 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
       return this;
     },
   };
+
   $.fn.enjoyhint = function (method, ...args) {
     if (methods[method]) {
       return methods[method].apply(this, args);
