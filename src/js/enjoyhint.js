@@ -5,20 +5,20 @@ window.EnjoyHint = function (_options) {
 
   const defaults = {
 
-    onStart() {
-
+    async onStart() {
+      return Promise.resolve();
     },
 
-    onEnd() {
-
+    async onEnd() {
+      return Promise.resolve();
     },
 
-    onSkip() {
-
+    async onSkip() {
+      return Promise.resolve();
     },
 
-    onNext() {
-
+    async onNext() {
+      return Promise.resolve();
     },
   };
 
@@ -32,49 +32,18 @@ window.EnjoyHint = function (_options) {
 
   /** ******************* PRIVATE METHODS ************************************** */
 
-  const init = function () {
-    const ehEl = $('.enjoyhint');
-
-    if (ehEl.length) {
-      ehEl.remove();
-    }
-
-    $body.css({ overflow: 'hidden' });
-
-    $(document).on('touchmove', lockTouch);
-
-    $body.enjoyhint({
-
-      onNextClick() {
-        nextStep();
-      },
-
-      async onSkipClick() {
-        await options.onSkip();
-        skipAll();
-      },
-    });
-  };
-
-  function lockTouch(e) {
-    e.preventDefault();
+  function makeEventName(name, isCustom) {
+    return `${name + (isCustom ? 'custom' : '')}.enjoy_hint`;
   }
 
-  const destroyEnjoy = function () {
-    $('.enjoyhint').remove();
-    $body.css({ overflow: '' });
-    $(document).off('touchmove', lockTouch);
-  };
 
-  that.clear = function () {
-    const $nextBtn = $('.enjoyhint_next_btn');
-    const $skipBtn = $('.enjoyhint_skip_btn');
+  function on(eventName, callback) {
+    $body.on(makeEventName(eventName, true), callback);
+  }
 
-    $nextBtn.removeClass(that.nextUserClass);
-    $nextBtn.text('Next');
-    $skipBtn.removeClass(that.skipUserClass);
-    $skipBtn.text('Skip');
-  };
+  function off(eventName) {
+    $body.off(makeEventName(eventName, true));
+  }
 
   async function stepAction() {
     if (!(data && data[currentStep])) {
@@ -99,7 +68,7 @@ window.EnjoyHint = function (_options) {
 
     if (Object.prototype.hasOwnProperty.call(stepData, 'onBeforeStart') &&
       typeof stepData.onBeforeStart === 'function') {
-      stepData.onBeforeStart();
+      await stepData.onBeforeStart();
     }
 
     const timeout = stepData.timeout || 0;
@@ -126,7 +95,7 @@ window.EnjoyHint = function (_options) {
 
       $(document.body).scrollTo(stepData.selector, stepData.scrollAnimationSpeed || 250, { offset: -100 });
 
-      setTimeout(() => {
+      setTimeout(async () => {
         const $element = $(stepData.selector);
         const event = makeEventName(stepData.event);
 
@@ -139,10 +108,10 @@ window.EnjoyHint = function (_options) {
         }
 
         if (!stepData.event_type && stepData.event === 'key') {
-          $element.keydown((keydownEvent) => {
+          $element.keydown(async (keydownEvent) => {
             if (keydownEvent.which === stepData.keyCode) {
               currentStep += 1;
-              stepAction();
+              await stepAction();
             }
           });
         }
@@ -179,15 +148,15 @@ window.EnjoyHint = function (_options) {
               $element[stepData.event]();
 
               currentStep += 1;
-              stepAction();
+              await stepAction();
 
               return;
 
             case 'custom':
-              on(stepData.event, () => {
+              on(stepData.event, async () => {
                 currentStep += 1;
                 off(stepData.event);
-                stepAction();
+                await stepAction();
               });
 
               break;
@@ -200,7 +169,7 @@ window.EnjoyHint = function (_options) {
             // noop
           }
         } else {
-          $eventElement.on(event, function (e) {
+          $eventElement.on(event, async function (e) {
             if (stepData.keyCode && e.keyCode !== stepData.keyCode) {
               return;
             }
@@ -209,7 +178,7 @@ window.EnjoyHint = function (_options) {
 
             $(this).off(event);
 
-            stepAction(); // clicked
+            await stepAction(); // clicked
           });
         }
 
@@ -252,9 +221,9 @@ window.EnjoyHint = function (_options) {
     }, timeout);
   }
 
-  function nextStep() {
+  async function nextStep() {
     currentStep += 1;
-    stepAction();
+    await stepAction();
   }
 
   function skipAll() {
@@ -267,18 +236,49 @@ window.EnjoyHint = function (_options) {
     destroyEnjoy();
   }
 
-  function makeEventName(name, isCustom) {
-    return `${name + (isCustom ? 'custom' : '')}.enjoy_hint`;
+  const init = function () {
+    const ehEl = $('.enjoyhint');
+
+    if (ehEl.length) {
+      ehEl.remove();
+    }
+
+    $body.css({ overflow: 'hidden' });
+
+    $(document).on('touchmove', lockTouch);
+
+    $body.enjoyhint({
+
+      async onNextClick() {
+        await nextStep();
+      },
+
+      async onSkipClick() {
+        await options.onSkip();
+        skipAll();
+      },
+    });
+  };
+
+  function lockTouch(e) {
+    e.preventDefault();
   }
 
-  function on(eventName, callback) {
-    $body.on(makeEventName(eventName, true), callback);
-  }
+  const destroyEnjoy = function () {
+    $('.enjoyhint').remove();
+    $body.css({ overflow: '' });
+    $(document).off('touchmove', lockTouch);
+  };
 
-  function off(eventName) {
-    $body.off(makeEventName(eventName, true));
-  }
+  that.clear = function () {
+    const $nextBtn = $('.enjoyhint_next_btn');
+    const $skipBtn = $('.enjoyhint_skip_btn');
 
+    $nextBtn.removeClass(that.nextUserClass);
+    $nextBtn.text('Next');
+    $skipBtn.removeClass(that.skipUserClass);
+    $skipBtn.text('Skip');
+  };
 
   /** ******************* PUBLIC METHODS ************************************** */
 
@@ -286,9 +286,9 @@ window.EnjoyHint = function (_options) {
     skipAll();
   };
 
-  that.reRunScript = function (cs) {
+  that.reRunScript = async function (cs) {
     currentStep = cs;
-    stepAction();
+    await stepAction();
   };
 
   that.runScript = async function () {
@@ -296,11 +296,11 @@ window.EnjoyHint = function (_options) {
 
     await options.onStart();
 
-    stepAction();
+    await stepAction();
   };
 
-  that.resumeScript = function () {
-    stepAction();
+  that.resumeScript = async function () {
+    await stepAction();
   };
 
   that.setCurrentStep = function (cs) {
@@ -311,10 +311,10 @@ window.EnjoyHint = function (_options) {
     return currentStep;
   };
 
-  that.trigger = function (eventName) {
+  that.trigger = async function (eventName) {
     switch (eventName) {
       case 'next':
-        nextStep();
+        await nextStep();
         break;
 
       case 'skip':

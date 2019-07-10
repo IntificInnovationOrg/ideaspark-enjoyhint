@@ -143,15 +143,13 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
-                  // eslint-disable-next-line no-console
-                  console.log('skip-click');
-                  _context.next = 3;
+                  _context.next = 2;
                   return self.options.onSkipClick();
 
-                case 3:
+                case 2:
                   self.hide();
 
-                case 4:
+                case 3:
                 case "end":
                   return _context.stop();
               }
@@ -169,12 +167,10 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
-                  // eslint-disable-next-line no-console
-                  console.log('next-click');
-                  _context2.next = 3;
+                  _context2.next = 2;
                   return self.options.onNextClick();
 
-                case 3:
+                case 2:
                 case "end":
                   return _context2.stop();
               }
