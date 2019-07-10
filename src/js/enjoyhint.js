@@ -49,8 +49,8 @@ window.EnjoyHint = function (_options) {
         nextStep();
       },
 
-      onSkipClick() {
-        options.onSkip();
+      async onSkipClick() {
+        await options.onSkip();
         skipAll();
       },
     });
@@ -76,15 +76,18 @@ window.EnjoyHint = function (_options) {
     $skipBtn.text('Skip');
   };
 
-  function stepAction() {
+  async function stepAction() {
     if (!(data && data[currentStep])) {
       $body.enjoyhint('hide');
-      options.onEnd();
+
+      await options.onEnd();
+
       destroyEnjoy();
+
       return;
     }
 
-    options.onNext();
+    await options.onNext();
 
     const $enjoyhint = $('.enjoyhint');
 
@@ -288,9 +291,11 @@ window.EnjoyHint = function (_options) {
     stepAction();
   };
 
-  that.runScript = function () {
+  that.runScript = async function () {
     currentStep = 0;
-    options.onStart();
+
+    await options.onStart();
+
     stepAction();
   };
 
