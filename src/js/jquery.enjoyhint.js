@@ -40,7 +40,10 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         const fn = {
           onNextClick() {
             // eslint-disable-next-line no-console
-            console.log('on next hang on a second');
+            console.log(`Settings looks like this: ${JSON.stringify(settings, null, 2)}`);
+            // eslint-disable-next-line no-console
+            console.log('Is settings.onNextClick a function? ' +
+              ` ${settings && settings.onNextClick && typeof settings.onNextClick === 'function' ? 'YES' : 'NO WTF'}`);
           },
           onSkipClick() {
           },

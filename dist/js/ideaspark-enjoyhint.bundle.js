@@ -732,7 +732,9 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         var fn = {
           onNextClick: function onNextClick() {
             // eslint-disable-next-line no-console
-            console.log('on next hang on a second');
+            console.log("Settings looks like this: ".concat(JSON.stringify(settings, null, 2))); // eslint-disable-next-line no-console
+
+            console.log('Is settings.onNextClick a function? ' + " ".concat(settings && settings.onNextClick && typeof settings.onNextClick === 'function' ? 'YES' : 'NO WTF'));
           },
           onSkipClick: function onSkipClick() {},
           animation_time: 800
