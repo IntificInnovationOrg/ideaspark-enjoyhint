@@ -38,14 +38,11 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         }
 
         const fn = {
-          onNextClick() {
-            // eslint-disable-next-line no-console
-            console.log(`Settings looks like this: ${JSON.stringify(settings, null, 2)}`);
-            // eslint-disable-next-line no-console
-            console.log('Is settings.onNextClick a function? ' +
-              ` ${settings && settings.onNextClick && typeof settings.onNextClick === 'function' ? 'YES' : 'NO WTF'}`);
+          async onNextClick() {
+            return Promise.resolve();
           },
-          onSkipClick() {
+          async onSkipClick() {
+            return Promise.resolve();
           },
           animation_time: 800,
         };
@@ -855,13 +852,20 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
   };
 
   $.fn.enjoyhint = function (method, ...args) {
-    if (methods[method]) {
-      return methods[method].apply(this, args);
-    }
     if (typeof method === 'object' || !method) {
       return methods.init.apply(this, method, ...args);
     }
-    $.error(`Method ${method} does not exist on $.numinput`);
+
+    if (typeof method === 'string') {
+      if (Object.prototype.hasOwnProperty.call(methods, method)) {
+        return methods[method].apply(this, args);
+      }
+
+      $.error(`Method ${method} does not exist on $.enjoyhint`);
+    }
+
+    $.error('$.enjoyhint does not recognize the supplied method name or settings object');
+
     return this;
   };
 }(window.jQuery));

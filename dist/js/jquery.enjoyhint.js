@@ -46,13 +46,54 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         }
 
         var fn = {
-          onNextClick: function onNextClick() {
-            // eslint-disable-next-line no-console
-            console.log("Settings looks like this: ".concat(JSON.stringify(settings, null, 2))); // eslint-disable-next-line no-console
+          onNextClick: function () {
+            var _onNextClick = _asyncToGenerator(
+            /*#__PURE__*/
+            regeneratorRuntime.mark(function _callee() {
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      return _context.abrupt("return", Promise.resolve());
 
-            console.log('Is settings.onNextClick a function? ' + " ".concat(settings && settings.onNextClick && typeof settings.onNextClick === 'function' ? 'YES' : 'NO WTF'));
-          },
-          onSkipClick: function onSkipClick() {},
+                    case 1:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee);
+            }));
+
+            function onNextClick() {
+              return _onNextClick.apply(this, arguments);
+            }
+
+            return onNextClick;
+          }(),
+          onSkipClick: function () {
+            var _onSkipClick = _asyncToGenerator(
+            /*#__PURE__*/
+            regeneratorRuntime.mark(function _callee2() {
+              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                  switch (_context2.prev = _context2.next) {
+                    case 0:
+                      return _context2.abrupt("return", Promise.resolve());
+
+                    case 1:
+                    case "end":
+                      return _context2.stop();
+                  }
+                }
+              }, _callee2);
+            }));
+
+            function onSkipClick() {
+              return _onSkipClick.apply(this, arguments);
+            }
+
+            return onSkipClick;
+          }(),
           animation_time: 800
         };
         this.enjoyhint_obj = {};
@@ -143,51 +184,6 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         /*#__PURE__*/
         _asyncToGenerator(
         /*#__PURE__*/
-        regeneratorRuntime.mark(function _callee() {
-          return regeneratorRuntime.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  _context.next = 2;
-                  return self.options.onSkipClick();
-
-                case 2:
-                  self.hide();
-
-                case 3:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee);
-        })));
-        self.$next_btn = $('<div>', {
-          "class": self.cl.next_btn
-        }).appendTo(self.enjoyhint).html('Next').click(
-        /*#__PURE__*/
-        _asyncToGenerator(
-        /*#__PURE__*/
-        regeneratorRuntime.mark(function _callee2() {
-          return regeneratorRuntime.wrap(function _callee2$(_context2) {
-            while (1) {
-              switch (_context2.prev = _context2.next) {
-                case 0:
-                  _context2.next = 2;
-                  return self.options.onNextClick();
-
-                case 2:
-                case "end":
-                  return _context2.stop();
-              }
-            }
-          }, _callee2);
-        })));
-        self.$close_btn = $('<div>', {
-          "class": self.cl.close_btn
-        }).appendTo(self.enjoyhint).html('').click(
-        /*#__PURE__*/
-        _asyncToGenerator(
-        /*#__PURE__*/
         regeneratorRuntime.mark(function _callee3() {
           return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
@@ -205,6 +201,51 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
               }
             }
           }, _callee3);
+        })));
+        self.$next_btn = $('<div>', {
+          "class": self.cl.next_btn
+        }).appendTo(self.enjoyhint).html('Next').click(
+        /*#__PURE__*/
+        _asyncToGenerator(
+        /*#__PURE__*/
+        regeneratorRuntime.mark(function _callee4() {
+          return regeneratorRuntime.wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  _context4.next = 2;
+                  return self.options.onNextClick();
+
+                case 2:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4);
+        })));
+        self.$close_btn = $('<div>', {
+          "class": self.cl.close_btn
+        }).appendTo(self.enjoyhint).html('').click(
+        /*#__PURE__*/
+        _asyncToGenerator(
+        /*#__PURE__*/
+        regeneratorRuntime.mark(function _callee5() {
+          return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            while (1) {
+              switch (_context5.prev = _context5.next) {
+                case 0:
+                  _context5.next = 2;
+                  return self.options.onSkipClick();
+
+                case 2:
+                  self.hide();
+
+                case 3:
+                case "end":
+                  return _context5.stop();
+              }
+            }
+          }, _callee5);
         })));
         self.$canvas.mousedown(function (event) {
           var canvas = $('canvas');
@@ -829,17 +870,21 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
       args[_key - 1] = arguments[_key];
     }
 
-    if (methods[method]) {
-      return methods[method].apply(this, args);
-    }
-
     if (_typeof(method) === 'object' || !method) {
       var _methods$init;
 
       return (_methods$init = methods.init).apply.apply(_methods$init, [this, method].concat(args));
     }
 
-    $.error("Method ".concat(method, " does not exist on $.numinput"));
+    if (typeof method === 'string') {
+      if (Object.prototype.hasOwnProperty.call(methods, method)) {
+        return methods[method].apply(this, args);
+      }
+
+      $.error("Method ".concat(method, " does not exist on $.enjoyhint"));
+    }
+
+    $.error('$.enjoyhint does not recognize the supplied method name or settings object');
     return this;
   };
 })(window.jQuery);
