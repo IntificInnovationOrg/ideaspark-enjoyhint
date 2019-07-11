@@ -684,11 +684,11 @@ window.EnjoyHint = function (_options) {
 };
 ;"use strict";
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
   var effectiveRad = r;
@@ -716,8 +716,6 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
 
   var methods = {
     init: function init(settings) {
-      // eslint-disable-next-line no-console, max-len
-      console.log("Called init with stuff: ".concat(JSON.stringify(settings), ", onNextClick is a ").concat(settings && settings.onNextClick ? _typeof(settings.onNextClick) : 'nothing'));
       return this.each(function () {
         function svg(type, params) {
           var el = document.createElementNS('http://www.w3.org/2000/svg', type);
@@ -1559,8 +1557,6 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
     if (_typeof(method) === 'object' || !method) {
       var _methods$init;
 
-      // eslint-disable-next-line no-console, max-len
-      console.log("Initializing with stuff: ".concat(JSON.stringify(method), ", onNextClick is a ").concat(method && method.onNextClick ? _typeof(method.onNextClick) : 'nothing'));
       return (_methods$init = methods.init).call.apply(_methods$init, [this, method].concat(args));
     }
 

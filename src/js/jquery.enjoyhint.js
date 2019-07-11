@@ -26,9 +26,6 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
   // noinspection JSUnusedGlobalSymbols
   const methods = {
     init(settings) {
-      // eslint-disable-next-line no-console, max-len
-      console.log(`Called init with stuff: ${JSON.stringify(settings)}, onNextClick is a ${settings && settings.onNextClick ? typeof settings.onNextClick : 'nothing'}`);
-
       return this.each(function () {
         function svg(type, params) {
           const el = document.createElementNS('http://www.w3.org/2000/svg', type);
@@ -856,9 +853,6 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
 
   $.fn.enjoyhint = function (method, ...args) {
     if (typeof method === 'object' || !method) {
-      // eslint-disable-next-line no-console, max-len
-      console.log(`Initializing with stuff: ${JSON.stringify(method)}, onNextClick is a ${method && method.onNextClick ? typeof method.onNextClick : 'nothing'}`);
-
       return methods.init.call(this, method, ...args);
     }
 
