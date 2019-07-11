@@ -877,12 +877,14 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
 
       // eslint-disable-next-line no-console, max-len
       console.log("Initializing with stuff: ".concat(JSON.stringify(method), ", onNextClick is a ").concat(method && method.onNextClick ? _typeof(method.onNextClick) : 'nothing'));
-      return (_methods$init = methods.init).apply.apply(_methods$init, [this, method].concat(args));
+      return (_methods$init = methods.init).call.apply(_methods$init, [this, method].concat(args));
     }
 
     if (typeof method === 'string') {
       if (Object.prototype.hasOwnProperty.call(methods, method)) {
-        return methods[method].apply(this, args);
+        var _methods$method;
+
+        return (_methods$method = methods[method]).call.apply(_methods$method, [this].concat(args));
       }
 
       $.error("Method ".concat(method, " does not exist on $.enjoyhint"));

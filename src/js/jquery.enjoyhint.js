@@ -859,12 +859,12 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
       // eslint-disable-next-line no-console, max-len
       console.log(`Initializing with stuff: ${JSON.stringify(method)}, onNextClick is a ${method && method.onNextClick ? typeof method.onNextClick : 'nothing'}`);
 
-      return methods.init.apply(this, method, ...args);
+      return methods.init.call(this, method, ...args);
     }
 
     if (typeof method === 'string') {
       if (Object.prototype.hasOwnProperty.call(methods, method)) {
-        return methods[method].apply(this, args);
+        return methods[method].call(this, ...args);
       }
 
       $.error(`Method ${method} does not exist on $.enjoyhint`);
