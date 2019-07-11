@@ -46,7 +46,10 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         }
 
         var fn = {
-          onNextClick: function onNextClick() {},
+          onNextClick: function onNextClick() {
+            // eslint-disable-next-line no-console
+            console.log('on next hang on a second');
+          },
           onSkipClick: function onSkipClick() {},
           animation_time: 800
         };
@@ -167,12 +170,10 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
-                  // eslint-disable-next-line no-console
-                  console.log('hang on');
-                  _context2.next = 3;
+                  _context2.next = 2;
                   return self.options.onNextClick();
 
-                case 3:
+                case 2:
                 case "end":
                   return _context2.stop();
               }
