@@ -853,6 +853,9 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
 
   $.fn.enjoyhint = function (method, ...args) {
     if (typeof method === 'object' || !method) {
+      // eslint-disable-next-line no-console
+      console.log(`Initializing with stuff: ${JSON.stringify(method)}`);
+
       return methods.init.apply(this, method, ...args);
     }
 

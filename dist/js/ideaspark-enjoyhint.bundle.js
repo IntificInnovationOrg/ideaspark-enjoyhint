@@ -1557,6 +1557,8 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
     if (_typeof(method) === 'object' || !method) {
       var _methods$init;
 
+      // eslint-disable-next-line no-console
+      console.log("Initializing with stuff: ".concat(JSON.stringify(method)));
       return (_methods$init = methods.init).apply.apply(_methods$init, [this, method].concat(args));
     }
 
