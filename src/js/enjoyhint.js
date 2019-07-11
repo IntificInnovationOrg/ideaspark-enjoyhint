@@ -228,10 +228,13 @@ window.EnjoyHint = function (_options) {
 
   function skipAll() {
     const stepData = data[currentStep];
-    const $element = $(stepData.selector);
 
-    off(stepData.event);
-    $element.off(makeEventName(stepData.event));
+    if (stepData) {
+      const $element = $(stepData.selector);
+
+      off(stepData.event);
+      $element.off(makeEventName(stepData.event));
+    }
 
     destroyEnjoy();
   }
