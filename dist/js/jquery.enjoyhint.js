@@ -167,10 +167,12 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
-                  _context2.next = 2;
+                  // eslint-disable-next-line no-console
+                  console.log('hang on');
+                  _context2.next = 3;
                   return self.options.onNextClick();
 
-                case 2:
+                case 3:
                 case "end":
                   return _context2.stop();
               }

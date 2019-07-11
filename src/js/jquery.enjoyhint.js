@@ -160,6 +160,8 @@ CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
         self.$next_btn = $('<div>', {
           class: self.cl.next_btn,
         }).appendTo(self.enjoyhint).html('Next').click(async () => {
+          // eslint-disable-next-line no-console
+          console.log('hang on');
           await self.options.onNextClick();
         });
 

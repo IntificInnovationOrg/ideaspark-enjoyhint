@@ -18,8 +18,6 @@ window.EnjoyHint = function (_options) {
     },
 
     async onNext() {
-      // eslint-disable-next-line no-console
-      console.log('default');
       return Promise.resolve();
     },
   };
